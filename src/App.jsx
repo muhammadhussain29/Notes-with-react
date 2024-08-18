@@ -3,25 +3,26 @@ import Background from './Components/Background'
 import Navbar from './Components/Navbar'
 import Foreground from './Components/Foreground'
 import { MdCancel } from "react-icons/md";
+import { v4 as uuid } from "uuid";
 
 const App = () => {
-
+  
   const Addtaskpanel = useRef(null)
 
-  const [task, settask] = useState({ heading: "", description: "" })
+  const [task, settask] = useState({id:uuid(), heading: "", description: "" })
   const [list, setlist] = useState([])
 
   let headinghandlechange = (e) => {
-    settask({ heading: e.target.value, description: task.description })
+    settask({id:task.id, heading: e.target.value, description: task.description })
   }
   let deschandlechange = (e) => {
-    settask({ heading: task.heading, description: e.target.value })
+    settask({id:task.id, heading: task.heading, description: e.target.value })
   }
 
   let SaveTask = (e) => {
     e.preventDefault()
     setlist([...list, task])
-    settask({heading: "", description: "" })
+    settask({id:uuid(), heading: "", description: "" })
     Addtaskpanel.current.style.display="none";
   }
 
@@ -33,7 +34,7 @@ const App = () => {
     <>
       <Background />
       <Navbar Addtaskpanel={Addtaskpanel} setlist={setlist}/>
-      <Foreground list={list} />
+      <Foreground list={list} setlist={setlist}/>
 
 
 

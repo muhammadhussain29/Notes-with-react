@@ -17,7 +17,9 @@ const Note = (props) => {
                 <button className='text-lg bg-yellow-500 rounded-full p-1 hover:bg-yellow-600'>
             <MdEdit />
                 </button>
-                <button className='text-lg bg-yellow-500 rounded-full p-1 hover:bg-yellow-600'>
+                <button onClick={()=>{
+                    props.deleteNote(props.accesskey)
+                }} className='text-lg bg-yellow-500 rounded-full p-1 hover:bg-yellow-600'>
             <MdDelete/>
                 </button>
             </div>
