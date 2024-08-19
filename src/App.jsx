@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import Background from './Components/Background'
 import Navbar from './Components/Navbar'
 import Foreground from './Components/Foreground'
+import ShowNote from './Components/ShowNote'
 import { MdCancel } from "react-icons/md";
 import { v4 as uuid } from "uuid";
 
@@ -25,9 +26,14 @@ const App = () => {
   // Logic for save button inside addtaskpanel
   let SaveTask = (e) => {
     e.preventDefault()
-    setlist([...list, note])
-    setnote({ id: uuid(), heading: "", description: "" })
-    Addtaskpanel.current.style.display = "none";
+    if(note.heading.length > 0 || note.description.length > 0){
+      setlist([...list, note])
+      setnote({ id: uuid(), heading: "", description: "" })
+      Addtaskpanel.current.style.display = "none";
+    }
+    else{
+      alert("Cannot add a Empty note")
+    }
   }
 
   // Logic for cross button on top right corner of addtaskpanel
@@ -40,6 +46,8 @@ const App = () => {
       <Background />
       <Navbar Addtaskpanel={Addtaskpanel} setlist={setlist} />
       <Foreground Addtaskpanel={Addtaskpanel} setnote={setnote} list={list} setlist={setlist} />
+      <ShowNote/>
+
       {/* Add task panel */}
       <div ref={Addtaskpanel} className='hidden fixed top-[16.65%] left-[16.65%] z-20 bg-zinc-500 w-2/3 rounded-2xl p-5'>
         {/* Cancel button */}

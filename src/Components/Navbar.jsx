@@ -1,17 +1,24 @@
 import React from 'react'
+import { SlDocs } from "react-icons/sl";
 
 // Logic for buttons
 let Addnote = (Addtaskpanel) => {
   Addtaskpanel.current.style.display = "block";
 }
 let Clearall = (setlist) => {
-  setlist([])
+  let chk = confirm("Are you sure you want to delete All notes?")
+    if(chk){
+      setlist([])
+    }
 }
 
 const Navbar = (props) => {
   return (
-    <nav className='w-full py-2 flex justify-between items-center px-20 bg-zinc-600 text-zinc-400'>
-      <div className="logo">
+    <nav className='w-full fixed top-0 py-2 flex justify-between items-center px-20 bg-zinc-600 text-zinc-400'>
+      <div className="flex gap-2 items-center">
+        <div className='text-3xl text-yellow-500 font-bold'>
+          <SlDocs/>
+        </div>
         <h4 className='text-3xl uppercase font-bold text-yellow-500'>Docs...</h4>
       </div>
       <div>

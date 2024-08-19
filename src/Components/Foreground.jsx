@@ -17,14 +17,19 @@ const Foreground = (props) => {
   }
   // Logic of delete single note
   let deleteNote = (id) => {
-    let Notes = props.list.filter((e) => {
-      return e.id != id
-    })
-    props.setlist(Notes)
+    let chk = confirm("Are you sure you want to delete?")
+    if(chk){
+      let Notes = props.list.filter((e) => {
+        return e.id != id
+      })
+      props.setlist(Notes)
+    }
   }
 
   return (
-    <div className='flex shrink-0 flex-wrap gap-8 mx-20 my-5'>
+    <div className='flex shrink-0 flex-wrap gap-8 mx-20 mt-[100px] mb-5'>
+      {/* Default note */}
+      {props.list.length<1 && <p className='text-lg text-yellow-500 font-bold'>No Notes Found</p>}
       {/* Listing all notes */}
       {props.list.map((elem, index) => (
         <Note key={elem.id} heading={elem.heading} detail={elem.description} date={elem.date} deleteNote={deleteNote} editNote={editNote} accesskey={elem.id} />
