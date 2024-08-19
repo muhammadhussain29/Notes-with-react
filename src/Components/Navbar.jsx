@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Logic for buttons
 let Addnote = (Addtaskpanel) => {
   Addtaskpanel.current.style.display = "block";
 }
@@ -14,18 +15,14 @@ const Navbar = (props) => {
         <h4 className='text-3xl uppercase font-bold text-yellow-500'>Docs...</h4>
       </div>
       <div>
-
+        {/* Add button */}
         <button onClick={() => {
           Addnote(props.Addtaskpanel)
         }} className='px-3 py-2 my-1 mx-2 uppercase text-zinc-400 rounded-full text-sm hover:text-yellow-500  font-bold' >Add a note</button>
+        {/* Clear all button */}
         <button onClick={() => {
-          console.log(props);
-          
           Clearall(props.setlist)
         }}className='px-3 py-2 my-1 mx-2 uppercase text-zinc-400 rounded-full text-sm hover:text-yellow-500  font-bold' >clear All</button>
-        {/* {['add a note', 'clear all'].map((elem, index) => (
-            <button key={index} className='px-3 py-2 my-1 mx-2 uppercase text-zinc-400 rounded-full text-sm hover:text-yellow-500  font-bold' >{elem}</button>
-          ))} */}
       </div>
     </nav>
   )
