@@ -9,7 +9,7 @@ const Foreground = (props) => {
       {props.list.length < 1 && <p className='text-lg text-yellow-500 font-bold'>No Notes Found</p>}
       {/* Listing all notes */}
       {props.list.map((elem, index) => (
-        <Note key={elem.id} heading={elem.heading} detail={elem.description} date={elem.date} deleteNote={props.deleteNote} editNote={props.editNote} accesskey={elem.id} />
+          <Note key={elem.id} showNote={props.showNote} heading={elem.heading} detail={elem.description} date={elem.date} deleteNote={props.deleteNote} editNote={props.editNote} accesskey={elem.id} />
       )
       )}
     </div>
