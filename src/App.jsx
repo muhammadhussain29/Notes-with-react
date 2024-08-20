@@ -82,7 +82,7 @@ const App = () => {
       <Background />
       <Navbar Addnote={Addnote} Clearall={Clearall} />
       <Foreground list={list} deleteNote={deleteNote} editNote={editNote} />
-      <ShowNote />
+      {/* <ShowNote/> */}
       <Addnotepanel ref={Addtaskpanel} note={note} saveTask={saveTask} cancelTask={cancelTask} headinghandlechange={headinghandlechange} deschandlechange={deschandlechange} />
     </>
   )
