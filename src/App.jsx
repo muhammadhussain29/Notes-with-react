@@ -8,25 +8,28 @@ import { v4 as uuid } from "uuid";
 
 const App = () => {
 
+  // Initializing list on startup
+  // if it is empty setting as empty else geting notes from storage and displaying them
+  let notes;
+  if(localStorage.getItem("list") === null){
+    notes = [];
+  }else{
+    notes = JSON.parse(localStorage.getItem("list"))
+  }
+
   // panel for adding and updating note
   const addNotePanel = useRef(null)
   const showNotePanel = useRef(null)
 
   // note holds a single note that is inside the addNotePanel && list holds all the note displayed on screen
   const [note, setnote] = useState({ id: uuid(), heading: "", description: "" })
-  const [list, setlist] = useState([])
+  const [list, setlist] = useState(notes)
   const [showNoteContent, setShowNoteContent] = useState({ id: "", heading: "", description: "" }) 
-
-  // Reload saved notes on refresh
-  // useEffect(() => {
-  //   const savedNotes = JSON.parse(localStorage.getItem("list")) || [];
-  //   setlist(savedNotes);
-  // }, [])
-
+  
   // Save or update notes in local storage whenever list changes
-  // useEffect(() => {
-  //   localStorage.setItem("list", JSON.stringify(list));
-  // }, [list])
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
    
   // Change Handling function for input fields (two way binding)
   let headinghandlechange = (e) => {
