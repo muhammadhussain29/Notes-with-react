@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Background from './Components/Background'
 import Navbar from './Components/Navbar'
 import Foreground from './Components/Foreground'
@@ -15,8 +15,19 @@ const App = () => {
   // note holds a single note that is inside the addNotePanel && list holds all the note displayed on screen
   const [note, setnote] = useState({ id: uuid(), heading: "", description: "" })
   const [list, setlist] = useState([])
-  const [showNoteContent, setShowNoteContent] = useState({ id: "", heading: "", description: "" })
+  const [showNoteContent, setShowNoteContent] = useState({ id: "", heading: "", description: "" }) 
 
+  // Reload saved notes on refresh
+  // useEffect(() => {
+  //   const savedNotes = JSON.parse(localStorage.getItem("list")) || [];
+  //   setlist(savedNotes);
+  // }, [])
+
+  // Save or update notes in local storage whenever list changes
+  // useEffect(() => {
+  //   localStorage.setItem("list", JSON.stringify(list));
+  // }, [list])
+   
   // Change Handling function for input fields (two way binding)
   let headinghandlechange = (e) => {
     setnote({ id: note.id, heading: e.target.value, description: note.description })
@@ -66,7 +77,7 @@ const App = () => {
     })
     setlist(Notes)
     setnote({ id: note.id, heading: note.heading, description: note.description })
-    // it will make effect only when we edit note fromshow note panel
+    // it will make effect only when we edit note from show note panel
     cancelShowNote();
   }
 
@@ -94,8 +105,8 @@ const App = () => {
 
   // logic to close show note panel
   let cancelShowNote = () => {
-    showNotePanel.current.style.display = "none"
-    setShowNoteContent({ id: "", heading: "", description: "" })
+      showNotePanel.current.style.display = "none"
+      setShowNoteContent({ id: "", heading: "", description: "" })
   }
 
   return (
