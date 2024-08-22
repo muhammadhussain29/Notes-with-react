@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-::selection{
-    color: orange;
-}
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
